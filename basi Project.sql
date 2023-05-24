@@ -10,11 +10,16 @@ Puoi trovare l'ID video di un video di YouTube nella barra degli indirizzi del t
 
 
 CREATE TYPE Gender AS ENUM('M', 'F', '/');
+CREATE TYPE Stato AS ENUM('Attivo', 'Sospeso', 'Eliminato');
+CREATE TYPE Visibilita AS ENUM('Pubblico', 'Privato', 'Non in elenco');
+CREATE TYPE Abbonamento AS ENUM('Gratis', '1.99', '4.99', '9.99', '14.99', '19.99', '24.99');
+CREATE TYPE Like AS ENUM(-1, 0, 1);
+CREATE TYPE Categorie AS ENUM('Animali', 'Auto e motori', 'Fai da te e stile', 'Film e animazione', 'Giochi', 'Intrattenimento', 'Istruzione', 'Musica', 'Non profit e attivismo', 'Notizie e politica', 'Persone e blog', 'Scienze e tecnologie', 'Sport', 'Umorismo', 'Viaggi ed eventi')
 
 --Entità 1 Account
 CREATE TABLE IF NOT EXISTS Account(
-	id_Account varchar(256),
-	username varchar(256) NOT NULL UNIQUE,
+	id_Account INT UNSIGNED AUTO_INCREMENT, --Codice numerico univoco tipo matricola
+	handle varchar(256) NOT NULL UNIQUE, --Nome unico per ogni utente, modificabile dall'utente
 	mail varchar(256) NOT NULL UNIQUE,
 	dataIscrizione date NOT NULL,
 	password varchar(256) NOT NULL,
@@ -24,71 +29,110 @@ CREATE TABLE IF NOT EXISTS Account(
 	compleanno date,
 	genere Gender NOT NULL,
 	paese varchar(256) NOT NULL,
-
+	StatoAccount Stato NOT NULL,
+	descrizione varchar(1000),
+	premium boolean NOT NULL,	--Abbonamento YT premium
 
 	PRIMARY KEY(id_Account)
 );
 
+
+
 --Entità 2 video / live
-CREATE TABLE IF NOT EXISTS VIDEO(
-	videoID INT UNSIGNED AUTO_INCREMENT, --ID unico per ogni video: tipo una matricola
+CREATE TABLE IF NOT EXISTS Video(
+	id_Video INT UNSIGNED AUTO_INCREMENT, --ID unico per ogni video: tipo una matricola
 	titolo varchar(256) NOT NULL,
-	descrizione varchar(65535),
-	dataPubblicazione date NOT NULL,
-	views INT UNSIGNED NOT NULL,
-	likes INT UNSIGNED NOT NULL,
-	dislikes INT UNSIGNED NOT NULL,
-	Durata INT UNSIGNED NOT NULL,
+	descrizione varchar(500),
+	dataPubblicazione datetime NOT NULL,
+	durata INT UNSIGNED NOT NULL,	
+	costo float UNSIGNED, --Costo: se 0=NULL se >0 = costo
+	categoria Categorie,
+	visibilita Visibilita DEFAULT 'Pubblico',
+	stato Stato NOT NULL,
 	id_Account varchar(256) NOT NULL,
+	isLive boolean,--Se 0=video, sennò live -> che poi verrà pubblicata come video
+	dataFine datetime, --Nel caso fosse una live questa è la data in cui finisce
 
-	PRIMARY KEY(videoID)
+	PRIMARY KEY(id_Video),
 	FOREIGN KEY(id_Account) REFERENCES Account(id_Account)
+);--Ricordarsi di scrivere nella documentazione come creare URL account e video -> htpps://.../ID
 
-	--URL del video [Vincolo: Unico] -- Evitabile
-);
 
-CREATE TABLE IF NOT EXISTS LIVE(
-	Live_ID INT UNSIGNED AUTO_INCREMENT, --ID unico per ogni live: tipo una matricola
-
-);
-/*	- Live_ID (identificatore univoco)
-	- Titolo
-	- Descrizione
-	- URL della live
-	- Data e ora di inizio
-	- Durata
-	- Numero di spettatori
-	- ID del proprietario della live (riferimento all'Account_ID)*/
 
 --Entità 3 iscrizioni / abbonamento
-Iscrizioni -> abbonamento
+CREATE TABLE IF NOT EXISTS Abbonamenti(--Usiamo id_Account per gestire solo DELETE ON CASCADE, siccome handle potrebbe essere modificato
+	canale INT UNSIGNED,
+	iscritto INT UNSIGNED,
+	livello Abbonamento NOT NULL,--Se abbonamento = 'Gratis' -> solo iscrizione
 
---Entità 4 Like
-Like
+	PRIMARY KEY(canale, iscritto),
+	FOREIGN KEY(canale) REFERENCES Account(id_Account),
+	FOREIGN KEY(iscritto) REFERENCES Account(id_Account)
+);
 
---Entità 5 Playplist
-Playlist
+
+
+--Entità 4 Views, (Entità like è stata incorporata dentro di questa)
+CREATE TABLE IF NOT EXISTS Views(
+	account INT UNSIGNED NOT NULL, --Chi guarda
+	id_Video INT UNSIGNED NOT NULL,--Cosa guarda
+	valutation Likes DEFAULT 0, -- -1=dislike 0=nulla 1=like
+
+	PRIMARY KEY(account, id_Video),
+	FOREIGN KEY(account) REFERENCES Account(id_Account),
+	FOREIGN KEY(id_Video) REFERENCES Video(id_Video)
+);
+
+
+
+--Entità 5 Playlist
+CREATE TABLE IF NOT EXISTS Playlist(
+	id_Playlist INT UNSIGNED AUTO_INCREMENT,
+	titolo varchar(256) DEFAULT 'Guarda più tardi', --Perchè di default un account YT ha almeno questa playlist
+	descrizione varchar(500),
+	visibilita Visibilita DEFAULT 'Privato',
+	account INT UNSIGNED NOT NULL, --Creatore playlist
+	id_Video INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY(id_Playlist),
+	UNIQUE(titolo, account),
+	FOREIGN KEY(account) REFERENCES Account(id_Account),
+	FOREIGN KEY(id_Video) REFERENCES Video(id_Video)
+);
+
+
 
 --Entità 6 commento
-Commento
+CREATE TABLE IF NOT EXISTS Commenti(
+	id_Commento INT UNSIGNED AUTO_INCREMENT,--Codice univoco per ogni commento, utilizzato per le risposte ai commenti
+	account INT UNSIGNED NOT NULL, --Chi commenta
+	id_Video INT UNSIGNED NOT NULL,--Cosa commenta
+	messaggio varchar(500) NOT NULL, 
+	donazione float, --Campo per donazioni
+	dataCommento datetime NOT NULL,
+	id_Risposta INT UNSIGNED,-- Eventuale risposta ad un'altro commento
 
---Entità 7 iscrizione playplist ?
-Iscrizione playlist
+	PRIMARY KEY(id_Commento),
+	FOREIGN KEY(account) REFERENCES Account(id_Account),
+	FOREIGN KEY(id_Video) REFERENCES Video(id_Video),
+	FOREIGN KEY(id_Risposta) REFERENCES Commenti(id_Commento)
+);
+
+
+
+--Entità 7 salvare playlist
+CREATE TABLE IF NOT EXISTS SavedPlaylist( -- Salvare playlist private ?
+	account INT UNSIGNED NOT NULL,
+	id_Playlist INT UNSIGNED NOT NULL,
+
+	PRIMARY KEY(account, id_Playlist),
+	FOREIGN KEY(account) REFERENCES Account(id_Account),
+	FOREIGN KEY(id_Playlist) REFERENCES Playlist(id_Playlist),
+);
+
+
 
 /*
-<DIFFERENZA ACCOUNT - CANALE>
-	Certamente! Ecco la differenza tra un account e un canale su YouTube:
-
-	Account:
-	Un account su YouTube rappresenta l'identità di un singolo utente. Quando ti iscrivi a YouTube, crei un account che ti consente di accedere e gestire le tue attività sulla piattaforma. L'account contiene le informazioni personali dell'utente, come il nome utente, l'email, la password e le informazioni di base del profilo. È attraverso l'account che puoi caricare video, commentare, mettere mi piace e iscriverti ad altri canali.
-
-	Canale:
-	Un canale su YouTube rappresenta uno spazio dedicato a un contenuto specifico, gestito da un utente. Puoi considerare un canale come un "account pubblico" che ospita i video e le attività di un utente. Ogni account può creare uno o più canali associati ad esso. Un canale ha un nome, una descrizione e un'immagine del banner che possono essere personalizzati dall'utente per riflettere il proprio marchio o tema del contenuto.
-	I canali consentono agli utenti di organizzare e presentare i propri video in modo coerente. Quando un utente carica un video, può scegliere su quale canale desidera pubblicarlo. I canali hanno i loro URL unici, che possono essere condivisi con gli altri utenti per raggiungere il contenuto specifico ospitato da quel canale.
-
-	In sostanza, l'account è l'entità principale che rappresenta l'utente su YouTube, mentre il canale è un'entità associata all'account che ospita e organizza i video e le attività del contenuto specifico gestito dall'utente.
-</DIFFERENZA ACCOUNT - CANALE>
-
 <IDEE>
 	Per creare una base di dati per un progetto basato su YouTube, puoi considerare le seguenti entità e i relativi attributi:
 
