@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS Account(
 	id_Account INT UNSIGNED AUTO_INCREMENT, --Codice numerico univoco tipo matricola
 	handle varchar(256) NOT NULL UNIQUE, --Nome unico per ogni utente, modificabile dall'utente
 	mail varchar(256) NOT NULL UNIQUE,
+	password varchar(256)NOT NULL,--perche verra criptata
 	dataIscrizione date NOT NULL,
 	password varchar(256) NOT NULL,
 	imgProfilo varchar(256), --Link all'immagine
@@ -31,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Account(
 	paese varchar(256) NOT NULL,
 	StatoAccount Stato NOT NULL,
 	descrizione varchar(1000),
-	premium boolean NOT NULL,	--Abbonamento YT premium
+	premium boolean NOT NULL,	--Abbonamento YT premium(evita che un utente riceva le ads
 
 	PRIMARY KEY(id_Account)
 );
@@ -43,7 +44,7 @@ CREATE TABLE IF NOT EXISTS Video(
 	id_Video INT UNSIGNED AUTO_INCREMENT, --ID unico per ogni video: tipo una matricola
 	titolo varchar(256) NOT NULL,
 	descrizione varchar(500),
-	dataPubblicazione datetime NOT NULL,
+	dataPubblicazione datetime NOT NULL,--la data di pubblicazione corrisponde anche alla data di inizio per le live
 	durata INT UNSIGNED NOT NULL,	
 	costo float UNSIGNED, --Costo: se 0=NULL se >0 = costo
 	categoria Categorie,
@@ -55,8 +56,10 @@ CREATE TABLE IF NOT EXISTS Video(
 
 	PRIMARY KEY(id_Video),
 	FOREIGN KEY(id_Account) REFERENCES Account(id_Account)
+	CHECK((dataFine IS NULL AND isLive=true)OR(dataPubblicazione IS NOT NULL AND dataFine IS NOT NULL AND dataPubblicazione<dataFine AND isLive=false))
 );--Ricordarsi di scrivere nella documentazione come creare URL account e video -> htpps://.../ID
 
+--per le live serve numero di spettatori(
 
 
 --Entità 3 iscrizioni / abbonamento
@@ -77,6 +80,7 @@ CREATE TABLE IF NOT EXISTS Views(
 	account INT UNSIGNED NOT NULL, --Chi guarda
 	id_Video INT UNSIGNED NOT NULL,--Cosa guarda
 	valutation Likes DEFAULT 0, -- -1=dislike 0=nulla 1=like
+	dataView datetime NOT NULL
 
 	PRIMARY KEY(account, id_Video),
 	FOREIGN KEY(account) REFERENCES Account(id_Account),
@@ -118,7 +122,7 @@ CREATE TABLE IF NOT EXISTS Commenti(
 	FOREIGN KEY(id_Risposta) REFERENCES Commenti(id_Commento)
 );
 
-
+--SEGNALAZIONI
 
 --Entità 7 salvare playlist
 CREATE TABLE IF NOT EXISTS SavedPlaylist( -- Salvare playlist private ?
