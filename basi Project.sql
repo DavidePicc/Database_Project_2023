@@ -1,20 +1,23 @@
---Tutti i drop table !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- Eliminazione tabelle se già esistenti
+DROP TABLE IF EXISTS Account;
+DROP TABLE IF EXISTS Video;
+DROP TABLE IF EXISTS Abbonamenti;
+DROP TABLE IF EXISTS Views;
+DROP TABLE IF EXISTS Playlist;
+DROP TABLE IF EXISTS Commenti;
+DROP TABLE IF EXISTS SavedPlaylist;
 
-/*Per video e live si risolve il problema della chiave primaria aggiungendo un campo ID che funziona tipo matricola, ma va bene così ? O meglio fare una chiave primaria composta magari da (id_Account, titolo, data)
-Sì, i video su YouTube sono identificati in modo univoco attraverso un codice chiamato "ID video". L'ID video di YouTube è un identificatore univoco assegnato a ciascun video presente sulla piattaforma.
-L'ID video è una combinazione di caratteri alfanumerici, solitamente composta da undici caratteri. Questo codice univoco è associato a ogni video su YouTube e consente di identificarlo in modo univoco all'interno del sistema.
-Puoi trovare l'ID video di un video di YouTube nella barra degli indirizzi del tuo browser quando sei sulla pagina del video. L'ID video appare dopo il segno "=" nell'URL del video. Ad esempio, se l'URL del video è "https://www.youtube.com/watch?v=ABC123", allora "ABC123" è l'ID univoco di quel video.*/
 
 
-
-
-
+-- Creazione tipi
 CREATE TYPE Gender AS ENUM('M', 'F', '/');
 CREATE TYPE Stato AS ENUM('Attivo', 'Sospeso', 'Eliminato');
 CREATE TYPE Visibilita AS ENUM('Pubblico', 'Privato', 'Non in elenco');
 CREATE TYPE Abbonamento AS ENUM('Gratis', '1.99', '4.99', '9.99', '14.99', '19.99', '24.99');
 CREATE TYPE Like AS ENUM(-1, 0, 1);
 CREATE TYPE Categorie AS ENUM('Animali', 'Auto e motori', 'Fai da te e stile', 'Film e animazione', 'Giochi', 'Intrattenimento', 'Istruzione', 'Musica', 'Non profit e attivismo', 'Notizie e politica', 'Persone e blog', 'Scienze e tecnologie', 'Sport', 'Umorismo', 'Viaggi ed eventi')
+
+
 
 --Entità 1 Account
 CREATE TABLE IF NOT EXISTS Account(
