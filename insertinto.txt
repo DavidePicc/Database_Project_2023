@@ -1,12 +1,12 @@
 -- Popolamento tabella Account
 INSERT INTO Account (handle, mail, password, dataIscrizione, imgProfilo, nome_Utente, cognome_Utente, compleanno, genere, paese, StatoAccount, descrizione, premium)
-VALUES ('utente1', 'utente1@example.com', 'password123', '2023-01-01', 'https://example.com/image1.jpg', 'Mario', 'Rossi', '1990-05-10', 'M', 'Italia', 'Attivo', 'Descrizione dell'utente 1', true);
+VALUES ('utente1', 'utente1@example.com', 'password123', '2023-01-01', 'https://example.com/image1.jpg', 'Mario', 'Rossi', '1990-05-10', 'M', 'Italia', 'Attivo', 'Descrizione utente 1', true);
 
 INSERT INTO Account (handle, mail, password, dataIscrizione, imgProfilo, nome_Utente, cognome_Utente, compleanno, genere, paese, StatoAccount, descrizione, premium)
-VALUES ('utente2', 'utente2@example.com', 'password456', '2023-02-15', 'https://example.com/image2.jpg', 'Laura', 'Verdi', '1985-09-20', 'F', 'Spagna', 'Attivo', 'Descrizione dell'utente 2', false);
+VALUES ('utente2', 'utente2@example.com', 'password456', '2023-02-15', 'https://example.com/image2.jpg', 'Laura', 'Verdi', '1985-09-20', 'F', 'Spagna', 'Attivo', 'Descrizione utente 2', false);
 
 INSERT INTO Account (handle, mail, password, dataIscrizione, imgProfilo, nome_Utente, cognome_Utente, compleanno, genere, paese, StatoAccount, descrizione, premium)
-VALUES ('utente3', 'utente3@example.com', 'password789', '2023-03-20', 'https://example.com/image3.jpg', 'Luigi', 'Bianchi', '1995-07-01', '/', 'Francia', 'Sospeso', 'Descrizione dell'utente 3', true);
+VALUES ('utente3', 'utente3@example.com', 'password789', '2023-03-20', 'https://example.com/image3.jpg', 'Luigi', 'Bianchi', '1995-07-01', '/', 'Francia', 'Sospeso', 'Descrizione utente 3', true);
 
 -- Popolamento tabella Video
 INSERT INTO Video (titolo, descrizione, dataPubblicazione, durata, costo, categoria, visibilita, stato, id_Account, isLive, dataFine)
@@ -16,7 +16,7 @@ INSERT INTO Video (titolo, descrizione, dataPubblicazione, durata, costo, catego
 VALUES ('Titolo del video 2', 'Descrizione del video 2', '2023-04-05 15:30:00', 600, 4.99, 'Film e animazione', 'Privato', 'Attivo', 2, false, NULL);
 
 INSERT INTO Video (titolo, descrizione, dataPubblicazione, durata, costo, categoria, visibilita, stato, id_Account, isLive, dataFine)
-VALUES ('Titolo della live 1', 'Descrizione della live 1', '2023-05-10 20:00:00', 120, 0, 'Intrattenimento', 'Pubblico', 'Attivo', 1, true, '2023-05-10 22:00:00');
+VALUES ('Titolo della live 1', 'Descrizione della live 1', '2023-05-10 20:00:00', 120, 0, 'Intrattenimento', 'Pubblico', 'Attivo', 1, false, '2023-05-10 22:00:00');
 
 -- Popolamento tabella Abbonamenti
 INSERT INTO Abbonamenti (canale, iscritto, livello, dataIscrizione)
@@ -71,21 +71,21 @@ INSERT INTO SegnalazioniCommenti (account, id_Commento, motivo, data)
 VALUES (1, 2, 'Contenuti offensivi o che incitano all''odio', '2023-04-03 12:00:00');
 
 INSERT INTO SegnalazioniCommenti (account, id_Commento, motivo, data)
-VALUES (2, 1, 'Molestie o bullismo', '2023-04-03 13:00:00')
+VALUES (2, 1, 'Molestie o bullismo', '2023-04-03 13:00:00');
 
 -- Popolamento tabella LikeVideo
 INSERT INTO LikeVideo (account, id_Video, data, valutation)
-VALUES (1, 2, '2023-04-02 14:00:00', 1);
+VALUES (1, 2, '2023-04-02 14:00:00', '1');
 
 INSERT INTO LikeVideo (account, id_Video, data, valutation)
-VALUES (2, 1, '2023-04-03 09:00:00', 1);
+VALUES (2, 1, '2023-04-03 09:00:00', '1');
 
 INSERT INTO LikeVideo (account, id_Video, data, valutation)
-VALUES (3, 1, '2023-04-03 10:00:00', -1);
+VALUES (3, 1, '2023-04-03 10:00:00', '-1');
 
 -- Popolamento tabella LikeCommenti
 INSERT INTO LikeCommenti (account, id_Commento, data, valutation)
-VALUES (1, 2, '2023-04-03 11:00:00', 1);
+VALUES (1, 2, '2023-04-03 11:00:00', '1');
 
 INSERT INTO LikeCommenti (account, id_Commento, data, valutation)
-VALUES (2, 1, '2023-04-03 12:00:00', -1);
+VALUES (2, 1, '2023-04-03 12:00:00', '-1');
