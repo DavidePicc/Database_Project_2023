@@ -56,6 +56,7 @@ CREATE TYPE Motivo AS ENUM (
   'Non rispetta i miei diritti',
   'Problema con i sottotitoli',
   'Nessuna di queste opzioni descrive il mio problema'
+  'Violazione del copyright'
 );
 
 
@@ -115,7 +116,8 @@ CREATE TABLE IF NOT EXISTS Abbonamenti(
 	
 	PRIMARY KEY(canale, iscritto),
 	FOREIGN KEY(canale) REFERENCES Account(id_Account) ON UPDATE CASCADE ON DELETE CASCADE, -- Se viene modificato o eliminato un canale, verranno modificate/eliminate anche tutte le tuple contenenti i suoi iscritti
-	FOREIGN KEY(iscritto) REFERENCES Account(id_Account) ON UPDATE CASCADE ON DELETE CASCADE-- Se viene modificato o eliminato un canale, verranno modificate/eliminate anche tutte le tuple contenenti le sue iscrizioni
+	FOREIGN KEY(iscritto) REFERENCES Account(id_Account) ON UPDATE CASCADE ON DELETE CASCADE,-- Se viene modificato o eliminato un canale, verranno modificate/eliminate anche tutte le tuple contenenti le sue iscrizioni
+	check(iscritto<>canale) --controlla che uno non si inscriva a se stesso)
 );
 
 
