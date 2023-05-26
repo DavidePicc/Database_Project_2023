@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS Video(
 
 	PRIMARY KEY(id_Video),
 	FOREIGN KEY(id_Account) REFERENCES Account(id_Account) ON UPDATE CASCADE ON DELETE CASCADE, --Perchè se elimino un canale -> elimino tutti i video | Se modifico id_Account -> modifico anche il valore in tutti i suoi video
-	CHECK((dataFine IS NULL AND isLive=true)OR(dataPubblicazione IS NOT NULL AND dataFine IS NOT NULL AND dataPubblicazione<dataFine AND isLive=false))
+	CHECK((dataFine IS NULL AND isLive=false)OR(dataFine IS NULL AND isLive=true)OR(dataPubblicazione IS NOT NULL AND dataFine IS NOT NULL AND dataPubblicazione<dataFine AND isLive=false))
 );--Ricordarsi di scrivere nella documentazione come creare URL account e video -> htpps://.../ID
 --per le live serve numero di spettatori?(no è una cosa gestita non con con la base di dati)
 
