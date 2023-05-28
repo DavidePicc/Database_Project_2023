@@ -55,7 +55,7 @@ CREATE TYPE Motivo AS ENUM (
   'Spam o ingannevole',
   'Non rispetta i miei diritti',
   'Problema con i sottotitoli',
-  'Nessuna di queste opzioni descrive il mio problema'
+  'Nessuna di queste opzioni descrive il mio problema',
   'Violazione del copyright'
 );
 
