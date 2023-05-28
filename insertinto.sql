@@ -97,16 +97,17 @@ INSERT INTO SegnalazioniVideo (account, id_Video, motivo, descrizione, data)
 VALUES (1, 2, 'Contenuti violenti o ripugnanti', 'Video troppo violento', '2023-04-02 16:00:00'),
        (2, 1, 'Contenuti di natura sessuale', 'Video inappropriato', '2023-04-03 11:00:00'),
        (3, 1, 'Violazione del copyright', 'Contenuto protetto da copyright', '2023-05-05 10:30:00'),
-       (4, 3, 'Spam o frodi', 'Contenuto spam', '2023-06-10 15:45:00'),
-       (5, 2, 'Contenuti diffamatori', 'Diffamazione nel video', '2023-07-15 09:15:00');
+       (4, 3, 'Spam o ingannevole', 'Contenuto spam', '2023-06-10 15:45:00'),
+       (5, 2, 'Contenuti offensivi', 'Diffamazione nel video', '2023-07-15 09:15:00');
+
 
 -- Popolamento tabella SegnalazioniCommenti
 INSERT INTO SegnalazioniCommenti (account, id_Commento, motivo, data)
-VALUES (1, 2, 'Contenuti offensivi o che incitano all''odio', '2023-04-03 12:00:00'),
+VALUES (1, 2, 'Contenuti offensivi', '2023-04-03 12:00:00'),
        (2, 1, 'Molestie o bullismo', '2023-04-03 13:00:00'),
-       (3, 4, 'Violazione delle linee guida della community', '2023-05-06 14:30:00'),
-       (4, 3, 'Commento spam', '2023-06-11 16:45:00'),
-       (5, 5, 'Contenuti diffamatori', '2023-07-16 11:30:00');
+       (3, 4, 'Violazione del copyright', '2023-05-06 14:30:00'),
+       (4, 3, 'Spam o ingannevole', '2023-06-11 16:45:00'),
+       (5, 5, 'Spam o ingannevole', '2023-07-16 11:30:00');
 
 
 -- Popolamento tabella LikeVideo
