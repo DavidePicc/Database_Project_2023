@@ -46,7 +46,7 @@ CREATE TYPE Categorie AS ENUM (
 CREATE TYPE Motivo AS ENUM (
   'Contenuti di natura sessuale',
   'Contenuti violenti o ripugnanti',
-  'Contenuti offensivi o che incitano all''odio',
+  'Contenuti offensivi',
   'Molestie o bullismo',
   'Azioni dannose o pericolose',
   'Disinformazione',
