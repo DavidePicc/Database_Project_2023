@@ -46,10 +46,10 @@ int main(int argc, char **argv) {
             case 1:{
                     string query = "SELECT titolo, descrizione, datapubblicazione, durata, costo FROM Video WHERE titolo = $1::varchar(256) AND visibilita = 'Pubblico'";
                     PGresult* stmt = PQprepare(conn, "query_ricercaVideo", query.c_str(), 1, NULL);
-
+              
                     string video;
                     cout << "Inserire il titolo del video: ";
-                    cin >> video;
+                    getline(cin, video); //cin >> video;  std::getline(std::cin, stringa);
                     cout << "\n->" << video <<endl; //Output per vedere cosa si salva dell'input
                     const char* parameter = video.c_str();
                     cout << "\nRisultati della ricerca: \n";
