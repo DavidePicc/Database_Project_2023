@@ -123,7 +123,7 @@ int main(int argc, char **argv) {
         switch(scelta){
             case 1:{
                     cout << "Inserire il titolo del video: ";
-                    string query = "SELECT titolo, descrizione, datapubblicazione, durata, costo FROM Video WHERE titolo = $1::varchar(256) AND visibilita = 'Pubblico'";
+                    string query = "SELECT thumbnail, titolo, descrizione, datapubblicazione, durata, costo FROM Video WHERE titolo = $1::varchar(256) AND visibilita = 'Pubblico'";
                     queryProcedure(conn, query);
                 }
             break;
@@ -137,13 +137,13 @@ int main(int argc, char **argv) {
 
             case 3:{
                     cout << "Inserire il nome della categoria (iniziale maiuscola): ";
-                    string query = "SELECT titolo, descrizione, datapubblicazione, durata, costo FROM Video WHERE categoria = $1::Categorie AND visibilita = 'Pubblico'";
+                    string query = "SELECT thumbnail, titolo, descrizione, datapubblicazione, durata, costo FROM Video WHERE categoria = $1::Categorie AND visibilita = 'Pubblico'";
                     queryProcedure(conn, query);
                 }
             break;
 
             case 4:{
-                    cout << "Inserire il nome della categoria: ";
+                    cout << "Inserire il nome della categoria (iniziale maiuscola):  ";
                     string query = "SELECT DISTINCT A.imgprofilo, A.handle, A.dataiscrizione, A.descrizione FROM Account AS A JOIN Video AS V ON V.id_account = A.id_account WHERE V.categoria = $1::Categorie AND statoaccount = 'Attivo'";
                     queryProcedure(conn, query);
                 }
