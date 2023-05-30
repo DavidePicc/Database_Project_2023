@@ -1,4 +1,4 @@
-//2)query parametrica: barra di ricerca video/canale/topic
+//query parametrica: barra di ricerca video/canale/topic
 
 #include <cstdio>
 #include <iostream>
@@ -21,8 +21,87 @@ void checkResults(PGresult* res, const PGconn* conn) {
     }
 }
 
-int main(int argc, char **argv) {  
 
+
+string capitalizeString(const string& input) {
+    if(input.empty()) {
+        return input;  // Restituisce la stringa vuota se l'input è vuoto
+    }
+
+    string result = input;
+    result[0] = toupper(result[0]);  // Converte il primo carattere in maiuscolo
+
+    for(size_t i = 1; i < result.length(); i++) {
+        result[i] = tolower(result[i]);  // Converte tutti gli altri caratteri in minuscolo
+    }
+    return result;
+}
+
+
+
+
+void stampaRes(PGresult* res){
+    int tuple = PQntuples(res);
+    int campi = PQnfields(res);
+
+    for (int i = 0; i < campi; ++i) {
+        cout << capitalizeString(PQfname(res, i));
+        if(i < campi-1)
+                cout << ", ";
+    }
+    cout << endl;
+
+    for (int i = 0; i < tuple; ++i) {
+        for (int j = 0; j < campi; ++j) {
+            cout << PQgetvalue(res, i, j);
+            if(j < campi-1)
+                cout << ", ";
+        }
+        cout << endl;
+    }
+}
+
+
+
+void queryProcedure(PGconn* conn, string query){
+    string input;
+    cin.ignore();
+    getline(cin, input);
+
+    PGresult* stmt = PQprepare(conn, "query_ricerca", query.c_str(), 1, NULL);
+    
+    cout << "\n->" << input <<endl; //Output per vedere cosa si salva dell'input //Da eliminare/////////////////////////////
+    const char* parameter = input.c_str();
+    cout << "\nRisultati della ricerca: \n";
+
+    PGresult* res = PQexecPrepared(conn, "query_ricerca", 1, &parameter, NULL, 0, 0);
+    checkResults(res, conn);
+
+    stampaRes(res);
+}
+
+
+
+void queryProcedureInt(PGconn* conn, string query){
+    string input;
+    cin.ignore();
+    getline(cin, input);
+
+    PGresult* stmt = PQprepare(conn, "query_ricerca", query.c_str(), 1, NULL);
+    
+    cout << "\n->" << input <<endl; //Output per vedere cosa si salva dell'input //Da eliminare/////////////////////////////
+    const char* parameter = input.c_str();
+    cout << "\nRisultati della ricerca: \n";
+
+    PGresult* res = PQexecPrepared(conn, "query_ricerca", 1, &parameter, NULL, 0, 0);
+    checkResults(res, conn);
+
+    stampaRes(res);
+}
+
+
+
+int main(int argc, char **argv) {
     char conninfo[250];
     sprintf(conninfo, "user=%s password=%s dbname=%s hostaddr=%s port=%d", PG_USER , PG_PASS , PG_DB , PG_HOST , PG_PORT);
 
@@ -40,79 +119,37 @@ int main(int argc, char **argv) {
         cout << "Selezionare l'opzione desiderata: \n" << "0) Terminare ricerca\n" << "1) Ricerca video\n" << "2) Ricerca canale\n" << "3) Ricerca video per categoria\n" << "4) Ricerca canale per categoria\n\n"
             << "Inserire scelta: ";
         cin >> scelta;
-        cout <<"\n\n";
 
         switch(scelta){
             case 1:{
-                    string query = "SELECT titolo, descrizione, datapubblicazione, durata, costo FROM Video WHERE titolo = $1::varchar(256) AND visibilita = 'Pubblico'";
-                    PGresult* stmt = PQprepare(conn, "query_ricercaVideo", query.c_str(), 1, NULL);
-              
-                    string video;
                     cout << "Inserire il titolo del video: ";
-                    getline(cin, video); //cin >> video;  std::getline(std::cin, stringa);
-                    cout << "\n->" << video <<endl; //Output per vedere cosa si salva dell'input
-                    const char* parameter = video.c_str();
-                    cout << "\nRisultati della ricerca: \n";
-
-                    PGresult* res = PQexecPrepared(conn, "query_ricercaVideo", 1, &parameter, NULL, 0, 0);
-                    checkResults(res, conn);
-
-                    int tuple = PQntuples(res);
-                    int campi = PQnfields(res);
-
-                    for (int i = 0; i < campi; ++i) {
-                        cout << PQfname(res, i) << ", ";
-                    }
-                    cout << endl;
-
-                    for (int i = 0; i < tuple; ++i) {
-                        for (int j = 0; j < campi; ++j) {
-                            cout << PQgetvalue(res, i, j) << ", ";
-                        }
-                        cout << endl;
-                    }
-
-                    cout << "\n\n";
+                    string query = "SELECT titolo, descrizione, datapubblicazione, durata, costo FROM Video WHERE titolo = $1::varchar(256) AND visibilita = 'Pubblico'";
+                    queryProcedure(conn, query);
                 }
-                break;
-            case 2:
-                {
-                    //SELECT imgprofilo, handle, dataiscrizione FROM account  WHERE handle = $1::varchar(256) AND statoaccount = 'Attivo';
-                }
-                break;
-            case 3:
-                {
-                    //SELECT * FROM video WHERE categoria = $1::varchar(256) AND visibilita = 'Pubblico';
-                }
-                break;
-            case 4: //Basta avere un video di una categoria per essere considerato un canale di quella categoria
-                {
-                    //SELECT A.imgprofilo, A.handle, A.dataiscrizione FROM account AS A JOIN video AS V ON V.id_account = A.id_account WHERE V.categoria = $1::varchar(256) AND statoaccount = 'Attivo';
-                }
-                break;
-            case 5:{
-                    PGresult* res;
-                    res = PQexec(conn, "SELECT titolo, descrizione, datapubblicazione, durata, costo FROM Video WHERE titolo = 'Titolo del video 1' AND visibilita = 'Pubblico'");
-                    checkResults(res, conn);
+            break;
 
-                    int tuple = PQntuples(res);
-                    int campi = PQnfields(res);
-
-                    for (int i = 0; i < campi; ++i) {
-                        cout << PQfname(res, i) << ", ";
-                    }
-                    cout << endl;
-
-                    for (int i = 0; i < tuple; ++i) {
-                        for (int j = 0; j < campi; ++j) {
-                            cout << PQgetvalue(res, i, j) << ", ";
-                        }
-                    }
-
-                    cout << "\n\n";
+            case 2:{
+                    cout << "Inserire il nome del canale: ";
+                    string query = "SELECT imgprofilo, handle, dataiscrizione FROM Account WHERE handle = $1::varchar(256) AND statoaccount = 'Attivo'";
+                    queryProcedure(conn, query);
                 }
-                break;
+            break;
+
+            case 3:{
+                    cout << "Inserire il nome della categoria (iniziale maiuscola): ";
+                    string query = "SELECT titolo, descrizione, datapubblicazione, durata, costo FROM Video WHERE categoria = $1::Categorie AND visibilita = 'Pubblico'";
+                    queryProcedure(conn, query);
+                }
+            break;
+
+            case 4:{
+                    cout << "Inserire il nome della categoria: ";
+                    string query = "SELECT DISTINCT A.imgprofilo, A.handle, A.dataiscrizione, A.descrizione FROM Account AS A JOIN Video AS V ON V.id_account = A.id_account WHERE V.categoria = $1::Categorie AND statoaccount = 'Attivo'";
+                    queryProcedure(conn, query);
+                }
+            break;
         }
+        cout << "\n-----------------------------------\n\n";
     }while(scelta != 0);
 
     PQfinish(conn);
