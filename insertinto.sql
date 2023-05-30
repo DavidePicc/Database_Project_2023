@@ -15,18 +15,18 @@ VALUES
 -- Popolamento tabella Video
 INSERT INTO Video (titolo, descrizione, dataPubblicazione, durata, costo, categoria, visibilita, stato, id_Account, isLive, dataFine)
 VALUES
-('Titolo del video 1', 'Descrizione del video 1', '2023-04-01 10:00:00', 300, 0, 'Musica', 'Pubblico', 'Attivo', 1, false, NULL),
-('Titolo del video 2', 'Descrizione del video 2', '2023-04-05 15:30:00', 600, 4.99, 'Film e animazione', 'Privato', 'Attivo', 2, false, NULL),
-('Titolo della live 1', 'Descrizione della live 1', '2023-05-10 20:00:00', 120, 0, 'Intrattenimento', 'Pubblico', 'Attivo', 1, false, '2023-05-10 22:00:00'),
-('Titolo del video 3', 'Descrizione del video 3', '2023-06-15 14:30:00', 480, 0, 'Sport', 'Pubblico', 'Attivo', 3, false, NULL),
-('Titolo del video 4', 'Descrizione del video 4', '2023-07-20 09:45:00', 240, 0, 'Animali', 'Privato', 'Attivo', 4, false, NULL),
-('Titolo della live 2', 'Descrizione della live 2', '2023-08-10 18:00:00', 90, 0, 'Intrattenimento', 'Pubblico', 'Attivo', 2, false, '2023-08-10 19:30:00'),
-('Titolo del video 5', 'Descrizione del video 5', '2023-09-05 11:15:00', 420, 1.99, 'Film e animazione', 'Pubblico', 'Attivo', 5, false, NULL),
-('Titolo del video 6', 'Descrizione del video 6', '2023-10-12 16:30:00', 180, 0, 'Giochi', 'Privato', 'Attivo', 3, false, NULL),
-('Titolo della live 3', 'Descrizione della live 3', '2023-11-20 19:00:00', 150, 0, 'Intrattenimento', 'Pubblico', 'Attivo', 4, true, NULL),
-('Titolo del video 7', 'Descrizione del video 7', '2023-12-15 13:45:00', 300, 3.99, 'Film e animazione', 'Pubblico', 'Attivo', 6, false, NULL),
-('Titolo del video 8', 'Descrizione del video 8', '2024-01-10 08:30:00', 600, 0, 'Film e animazione', 'Privato', 'Attivo', 5, false, NULL),
-('Titolo della live 4', 'Descrizione della live 4', '2024-02-25 21:30:00', 120, 0, 'Notizie e politica', 'Pubblico', 'Attivo', 6, true, NULL);
+('Titolo del video 1', 'Descrizione del video 1', '2023-04-01 10:00:00', 300, 0, 'Musica', 'Pubblico', 'Attivo', 1, false, NULL, 'https://example.com/image1.jpg'),
+('Titolo del video 2', 'Descrizione del video 2', '2023-04-05 15:30:00', 600, 4.99, 'Film e animazione', 'Privato', 'Attivo', 2, false, NULL, 'https://example.com/image2.jpg'),
+('Titolo della live 1', 'Descrizione della live 1', '2023-05-10 20:00:00', 120, 0, 'Intrattenimento', 'Pubblico', 'Attivo', 1, false, '2023-05-10 22:00:00', 'https://example.com/image3.jpg'),
+('Titolo del video 3', 'Descrizione del video 3', '2023-06-15 14:30:00', 480, 0, 'Sport', 'Pubblico', 'Attivo', 3, false, NULL, NULL),
+('Titolo del video 4', 'Descrizione del video 4', '2023-07-20 09:45:00', 240, 0, 'Animali', 'Privato', 'Attivo', 4, false, NULL, 'https://example.com/image4.jpg'),
+('Titolo della live 2', 'Descrizione della live 2', '2023-08-10 18:00:00', 90, 0, 'Intrattenimento', 'Pubblico', 'Attivo', 2, false, '2023-08-10 19:30:00', 'https://example.com/image5.jpg'),
+('Titolo del video 5', 'Descrizione del video 5', '2023-09-05 11:15:00', 420, 1.99, 'Film e animazione', 'Pubblico', 'Attivo', 5, false, NULL, 'https://example.com/image6.jpg'),
+('Titolo del video 6', 'Descrizione del video 6', '2023-10-12 16:30:00', 180, 0, 'Giochi', 'Privato', 'Attivo', 3, false, NULL, NULL),
+('Titolo della live 3', 'Descrizione della live 3', '2023-11-20 19:00:00', 150, 0, 'Intrattenimento', 'Pubblico', 'Attivo', 4, true, NULL, 'https://example.com/image7.jpg'),
+('Titolo del video 7', 'Descrizione del video 7', '2023-12-15 13:45:00', 300, 3.99, 'Film e animazione', 'Pubblico', 'Attivo', 6, false, NULL, 'https://example.com/image8.jpg'),
+('Titolo del video 8', 'Descrizione del video 8', '2024-01-10 08:30:00', 600, 0, 'Film e animazione', 'Privato', 'Attivo', 5, false, NULL, 'https://example.com/image9.jpg'),
+('Titolo della live 4', 'Descrizione della live 4', '2024-02-25 21:30:00', 120, 0, 'Notizie e politica', 'Pubblico', 'Attivo', 6, true, NULL, NULL);
 
 -- Popolamento tabella Abbonamenti
 INSERT INTO Abbonamenti (canale, iscritto, livello, dataIscrizione)
