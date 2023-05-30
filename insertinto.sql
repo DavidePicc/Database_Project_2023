@@ -13,7 +13,7 @@ VALUES
 
 
 -- Popolamento tabella Video
-INSERT INTO Video (titolo, descrizione, dataPubblicazione, durata, costo, categoria, visibilita, stato, id_Account, isLive, dataFine)
+INSERT INTO Video (titolo, descrizione, dataPubblicazione, durata, costo, categoria, visibilita, stato, id_Account, isLive, dataFine, thumbnail)
 VALUES
 ('Titolo del video 1', 'Descrizione del video 1', '2023-04-01 10:00:00', 300, 0, 'Musica', 'Pubblico', 'Attivo', 1, false, NULL, 'https://example.com/image1.jpg'),
 ('Titolo del video 2', 'Descrizione del video 2', '2023-04-05 15:30:00', 600, 4.99, 'Film e animazione', 'Privato', 'Attivo', 2, false, NULL, 'https://example.com/image2.jpg'),
