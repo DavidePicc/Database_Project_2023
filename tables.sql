@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS Video(
 	id_Account INT NOT NULL,
 	isLive boolean, 					-- Se 0=video, sennò live -> che poi verrà pubblicata come video
 	dataFine timestamp, 				-- Nel caso fosse una live questa è la data in cui finisce
-	
+	thumbnail varchar(256),
 
 	PRIMARY KEY(id_Video),
 	FOREIGN KEY(id_Account) REFERENCES Account(id_Account) ON UPDATE CASCADE ON DELETE CASCADE, --Perchè se elimino un canale -> elimino tutti i video | Se modifico id_Account -> modifico anche il valore in tutti i suoi video
