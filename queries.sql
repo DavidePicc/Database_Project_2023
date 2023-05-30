@@ -19,15 +19,15 @@ GROUP BY Video.id_account;
 SELECT *
 FROM Video
 --WHERE id_Account = "id_canale"
-ORDER BY dataPubblicazione DESC
+ORDER BY dataPubblicazione DESC;
 
 SELECT V.*
 FROM Video AS V
 INNER JOIN Playlist AS SP ON V.id_Video = SP.id_Video
 --WHERE SP.account = "id_utente" AND titolo="preferiti";
 
-SELECT Video.*
-FROM Video
+SELECT V.*
+FROM Video AS V
 INNER JOIN LikeVideo LV ON V.id_Video = LV.id_Video
 WHERE LV.account = <id_utente>;
 
@@ -47,7 +47,7 @@ JOIN (
 ORDER BY VIEWS.num_views DESC
 LIMIT 10;
 
-//DA RIVEDERE
+--DA RIVEDERE
 --5)video ordinati in base al rating ricevuto(like+dislike/views) //uso la view creata sopra per le visualizzazioni e un altra view
 CREATE VIEW AS SommaLike(
 SELECT id_Video, SUM(valutation) AS SommaLike
