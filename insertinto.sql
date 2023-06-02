@@ -5373,7 +5373,7 @@ VALUES ('42', '141', '2034-11-21 18:06:29'),
 
 -- Popolamento tabella Playlist
 INSERT INTO Playlist (account, id_Video, titolo, descrizione, visibilita)
-VALUES (1, 2, 'Playlist preferiti', 'Le mie video preferiti', 'Pubblico'),
+VALUES (1, 2, 'Playlist preferiti', 'I miei video preferiti', 'Pubblico'),
        (2, 3, 'Guarda dopo', 'Video da guardare in seguito', 'Privato'),
        (1, 4, 'Playlist divertenti', 'Video comici e divertenti', 'Pubblico'),
        (3, 1, 'Playlist musica', 'Le mie canzoni preferite', 'Privato'),
