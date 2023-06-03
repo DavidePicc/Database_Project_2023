@@ -49,25 +49,31 @@ LIMIT 10;
 
 
 --5)video ordinati in base al rating ricevuto(like+dislike/views) //uso la view creata sopra per le visualizzazioni e un altra view
+DROP VIEW IF EXISTS ViewsPerVideo;
 DROP VIEW IF EXISTS SommaLike;
-DROP VIEW IF EXISTS VOTO;
+DROP VIEW IF EXISTS voto;
 
-CREATE VIEW voto AS
+CREATE VIEW ViewsPerVideo AS(
+SELECT id_Video, COUNT(account) AS total_views
+FROM Views
+GROUP BY id_Video);
+
+CREATE VIEW voto AS(
 SELECT id_Video,
     CASE
-        WHEN valutation = '1' THEN 1
-        ELSE -1
+        WHEN valutation = '1' THEN 1.0
+        ELSE -1.0
     END AS stato
-FROM LikeVideo;
+FROM LikeVideo);
+
 CREATE VIEW SommaLike AS(
 SELECT id_Video, SUM(stato) AS SommaLike
-FROM voto --cambiare nome in conversione di tipo                     
-GROUP BY id_Video
-);
-SELECT S.id_Video, (S.SommaLike/V.total_views) AS RATING
-FROM SommaLike AS S, ViewsPerVideo AS V
-ORDER BY RATING DESC
+FROM voto                      
+GROUP BY id_Video);
 
+SELECT S.id_Video, (S.SommaLike/V.total_views) AS RATING
+FROM SommaLike AS S JOIN ViewsPerVideo AS V ON S.id_Video=V.id_Video
+ORDER BY RATING DESC;
 
 --6)utenti a cui far vedere una ads(se hanno yt premium o sono abbonati ad un canale)
 SELECT *
