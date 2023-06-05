@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS Video(
 	titolo varchar(256) NOT NULL,
 	descrizione varchar(500),
 	dataPubblicazione timestamp NOT NULL,-- La data di pubblicazione corrisponde anche alla data di inizio per le live
-	durata INT,--NOT NULL,	live non ha durata
+	durata INT NOT NULL,	--live non ha durata che si aggiorna in tempo reale
 	costo float, 						-- Costo: se 0=NULL se >0 = costo
 	categoria Categorie,
 	visibilita Visibilita DEFAULT 'Pubblico',
