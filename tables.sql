@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS SavedPlaylist( -- Salvare playlist private ?
 CREATE TABLE IF NOT EXISTS Commenti(
 	id_Commento SERIAL, 		--Codice univoco per ogni commento, utilizzato per le risposte ai commenti
 	account INT NOT NULL, 		--Chi commenta
-	id_Video INT NOT NULL, 		--Cosa commenta
+	id_Video INT NOT NULL, 		--Che video commenta
 	messaggio varchar(500) NOT NULL, 
 	donazione float, 			--Campo per donazioni
 	dataCommento timestamp NOT NULL,
