@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS Account(
 	handle varchar(256) NOT NULL UNIQUE,--Nome unico per ogni utente, modificabile dall'utente
 	mail varchar(256) NOT NULL UNIQUE,
 	password varchar(256)NOT NULL,		--perche verra criptata
-	dataIscrizione date NOT NULL,
+	dataIscrizione timestamp NOT NULL,
 	imgProfilo varchar(256), 			--Link all'immagine
 	nome_Utente varchar(256) NOT NULL,
 	cognome_Utente varchar(256) NOT NULL,
