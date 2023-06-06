@@ -86,3 +86,14 @@ FROM Video
 WHERE isLive = true; --non serve che controlli se la live già data fine perchè è messo come check nel codice per la creazione della tabella
 
 --(8) QUERY CH CREA LA PLAYLIST MI PIACE E GUARDA PIU' TARDI PER OGNI UTENTE
+INSERT INTO Playlist (account, id_Video, titolo, descrizione, visibilita)
+SELECT id_Account, 'Guarda più tardi', ' ', 'Privato'
+FROM account
+
+INSERT INTO Playlist (account, id_Video, titolo, descrizione, visibilita)
+SELECT id_Account, 'Video piaciuti', 'descrizione', 'Privato'
+FROM account
+
+
+
+
