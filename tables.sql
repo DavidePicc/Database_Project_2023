@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS Views(
 CREATE TABLE IF NOT EXISTS Playlist(
 	id_Playlist SERIAL,
 	account INT NOT NULL, 	--Creatore playlist
-	id_Video INT NOT NULL,
+	--id_Video INT NOT NULL,
 	titolo varchar(256) DEFAULT 'Guarda più tardi', --Perché di default un account YT ha almeno questa playlist
 	descrizione varchar(500),
 	visibilita Visibilita DEFAULT 'Privato',
@@ -147,7 +147,16 @@ CREATE TABLE IF NOT EXISTS Playlist(
 	PRIMARY KEY(id_Playlist),
 	UNIQUE(titolo, account),
 	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE, -- Se elimino/modifico un account -> elimino/modifico tutte le relative playlist,
-	FOREIGN KEY(id_Video) REFERENCES Video(id_Video) ON DELETE CASCADE ON UPDATE CASCADE	 -- Se elimino/modifico un video -> lo elimino/modifico da tutte le relative playlist
+	--FOREIGN KEY(id_Video) REFERENCES Video(id_Video) ON DELETE CASCADE ON UPDATE CASCADE	 -- Se elimino/modifico un video -> lo elimino/modifico da tutte le relative playlist
+);
+
+CREATE TABLE IF NOT EXISTS VideoPlaylist(
+	id_Video NOT NULL,
+	id_Playlist NOT NULL,
+	
+	PRIMARY KEY(id_Video, id_Playlist),
+	FOREIGN KEY(id_Video) REFERENCES Video(id_Video) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(id_Playlist) REFERENCES Playlist(id_Video) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
