@@ -84,3 +84,5 @@ WHERE premium = FALSE;
 SELECT *
 FROM Video
 WHERE isLive = true; --non serve che controlli se la live già data fine perchè è messo come check nel codice per la creazione della tabella
+
+--(8) QUERY CH CREA LA PLAYLIST MI PIACE E GUARDA PIU' TARDI PER OGNI UTENTE
