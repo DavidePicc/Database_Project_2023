@@ -63,12 +63,12 @@ CREATE TYPE Motivo AS ENUM (
 
 --Entità 1 Account
 CREATE TABLE IF NOT EXISTS Account(
-	id_Account SERIAL, 					--Codice numerico univoco tipo matricola
-	handle varchar(256) NOT NULL UNIQUE,--Nome unico per ogni utente, modificabile dall'utente
+	id_Account SERIAL, 			--Codice numerico univoco tipo matricola
+	handle varchar(256) NOT NULL UNIQUE,	--Nome unico per ogni utente, modificabile dall'utente
 	mail varchar(256) NOT NULL UNIQUE,
 	password varchar(256)NOT NULL,		--perche verra criptata
 	dataIscrizione timestamp NOT NULL,
-	imgProfilo varchar(256), 			--Link all'immagine
+	imgProfilo varchar(256), 		--Link all'immagine
 	nome_Utente varchar(256) NOT NULL,
 	cognome_Utente varchar(256) NOT NULL,
 	compleanno date,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS Account(
 	paese varchar(256) NOT NULL,
 	StatoAccount Stato NOT NULL,
 	descrizione varchar(1000),
-	premium boolean NOT NULL,			--Abbonamento YT premium(evita che un utente riceva le ads
+	premium boolean NOT NULL,		--Abbonamento YT premium(evita che un utente riceva le ads
 
 	PRIMARY KEY(id_Account)
 );
@@ -85,47 +85,46 @@ CREATE TABLE IF NOT EXISTS Account(
 
 --Entità 2 video / live
 CREATE TABLE IF NOT EXISTS Video(
-	id_Video SERIAL, 					-- ID unico per ogni video: tipo una matricola
+	id_Video SERIAL, 			-- ID unico per ogni video: tipo una matricola
 	titolo varchar(256) NOT NULL,
 	descrizione varchar(500),
-	dataPubblicazione timestamp NOT NULL,-- La data di pubblicazione corrisponde anche alla data di inizio per le live
-	durata INT NOT NULL,	--live non ha durata che si aggiorna in tempo reale
-	costo float, 						-- Costo: se 0=NULL se >0 = costo
+	dataPubblicazione timestamp NOT NULL,	-- La data di pubblicazione corrisponde anche alla data di inizio per le live
+	durata INT NOT NULL,			--live non ha durata che si aggiorna in tempo reale
+	costo float, 				-- Costo: se 0=NULL se >0 = costo
 	categoria Categorie,
 	visibilita Visibilita DEFAULT 'Pubblico',
 	stato Stato NOT NULL,
 	id_Account INT NOT NULL,
-	isLive boolean, 					-- Se 0=video, sennò live -> che poi verrà pubblicata come video
-	dataFine timestamp, 				-- Nel caso fosse una live questa è la data in cui finisce
+	isLive boolean, 			-- Se 0=video, sennò live -> che poi verrà pubblicata come video
+	dataFine timestamp, 			-- Nel caso fosse una live questa è la data in cui finisce
 	thumbnail varchar(256),
 
 	PRIMARY KEY(id_Video),
 	FOREIGN KEY(id_Account) REFERENCES Account(id_Account) ON UPDATE CASCADE ON DELETE CASCADE, --Perchè se elimino un canale -> elimino tutti i video | Se modifico id_Account -> modifico anche il valore in tutti i suoi video
 	CHECK((dataFine IS NULL AND isLive=false)OR(dataFine IS NULL AND isLive=true)OR(dataPubblicazione IS NOT NULL AND dataFine IS NOT NULL AND dataPubblicazione<dataFine AND isLive=false))
 );--Ricordarsi di scrivere nella documentazione come creare URL account e video -> htpps://.../ID
---per le live serve numero di spettatori?(no è una cosa gestita non con con la base di dati)
 
 
 
 --Entità 3 iscrizioni / abbonamento
 CREATE TABLE IF NOT EXISTS Abbonamenti(
-	canale INT, 					-- Canale a cui ci si abbona
-	iscritto INT,					-- Canale di colui che si abbona
-	livello Abbonamento NOT NULL, 	-- Se abbonamento = 'Gratis' -> solo iscrizione
+	canale INT, 				-- Canale a cui ci si abbona
+	iscritto INT,				-- Canale di colui che si abbona
+	livello Abbonamento NOT NULL, 		-- Se abbonamento = 'Gratis' -> solo iscrizione
 	dataIscrizione timestamp NOT NULL,
 	
 	PRIMARY KEY(canale, iscritto),
 	FOREIGN KEY(canale) REFERENCES Account(id_Account) ON UPDATE CASCADE ON DELETE CASCADE, -- Se viene modificato o eliminato un canale, verranno modificate/eliminate anche tutte le tuple contenenti i suoi iscritti
 	FOREIGN KEY(iscritto) REFERENCES Account(id_Account) ON UPDATE CASCADE ON DELETE CASCADE,-- Se viene modificato o eliminato un canale, verranno modificate/eliminate anche tutte le tuple contenenti le sue iscrizioni
-	check(iscritto<>canale) --controlla che uno non si inscriva a se stesso)
+	check(iscritto<>canale) --controlla che uno non si iscriva a se stesso
 );
 
 
 
 --Entità 4 Views
 CREATE TABLE IF NOT EXISTS Views(
-	account INT NOT NULL, 			-- Chi guarda
-	id_Video INT NOT NULL,			-- Cosa guarda
+	account INT NOT NULL, 		-- Chi guarda
+	id_Video INT NOT NULL,		-- Cosa guarda
 	dataView timestamp NOT NULL,	-- Quando è avvenuta la visualizzazione
 
 	PRIMARY KEY(account, id_Video),
@@ -138,21 +137,22 @@ CREATE TABLE IF NOT EXISTS Views(
 --Entità 5 Playlist
 CREATE TABLE IF NOT EXISTS Playlist(
 	id_Playlist SERIAL,
-	account INT NOT NULL, 	--Creatore playlist
-	--id_Video INT NOT NULL,
+	account INT NOT NULL, 				--Creatore playlist
 	titolo varchar(256) DEFAULT 'Guarda più tardi', --Perché di default un account YT ha almeno questa playlist
 	descrizione varchar(500),
 	visibilita Visibilita DEFAULT 'Privato',
 
 	PRIMARY KEY(id_Playlist),
 	UNIQUE(titolo, account),
-	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE, -- Se elimino/modifico un account -> elimino/modifico tutte le relative playlist,
+	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE -- Se elimino/modifico un account -> elimino/modifico tutte le relative playlist,
 	--FOREIGN KEY(id_Video) REFERENCES Video(id_Video) ON DELETE CASCADE ON UPDATE CASCADE	 -- Se elimino/modifico un video -> lo elimino/modifico da tutte le relative playlist
 );
 
+
+
 CREATE TABLE IF NOT EXISTS VideoPlaylist(
-	id_Video NOT NULL,
-	id_Playlist NOT NULL,
+	id_Video INT NOT NULL,
+	id_Playlist INT NOT NULL,
 	
 	PRIMARY KEY(id_Video, id_Playlist),
 	FOREIGN KEY(id_Video) REFERENCES Video(id_Video) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS SavedPlaylist( -- Salvare playlist private ?
 	id_Playlist INT NOT NULL,
 
 	PRIMARY KEY(account, id_Playlist),
-	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE,		-- Se elimino/modifico un account -> elimino/modifico tutte le relative playlist salvate
+	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE,	-- Se elimino/modifico un account -> elimino/modifico tutte le relative playlist salvate
 	FOREIGN KEY(id_Playlist) REFERENCES Playlist(id_Playlist) ON DELETE CASCADE ON UPDATE CASCADE	-- Se elimino/modifico una playlist -> la elimino/modifico da tutti gli account che l'hanno salvata
 );
 
@@ -184,8 +184,8 @@ CREATE TABLE IF NOT EXISTS Commenti(
 	id_Risposta INT, 			-- Eventuale risposta ad un'altro commento
 
 	PRIMARY KEY(id_Commento),
-	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE,		-- Se elimino/modifico un account -> elimino/modifico tutti i relativi video -> elimino/modifico tutti i relativi commenti
-	FOREIGN KEY(id_Video) REFERENCES Video(id_Video) ON DELETE CASCADE ON UPDATE CASCADE,			-- Se elimino/modifico un video -> elimino/modifico tutti i relativi commenti
+	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE,	-- Se elimino/modifico un account -> elimino/modifico tutti i relativi video -> elimino/modifico tutti i relativi commenti
+	FOREIGN KEY(id_Video) REFERENCES Video(id_Video) ON DELETE CASCADE ON UPDATE CASCADE,		-- Se elimino/modifico un video -> elimino/modifico tutti i relativi commenti
 	FOREIGN KEY(id_Risposta) REFERENCES Commenti(id_Commento) ON DELETE CASCADE ON UPDATE CASCADE,	-- Se elimino/modifico un commento padre -> elimino/modifico tutti i relativi commenti figli
 	check(donazione>=0)
 );
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS SegnalazioniCommenti(
 	data timestamp NOT NULL,
 	
 	PRIMARY KEY(id_Segnalazione),
-	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE,		-- Se elimino/modifico un account -> elimino/modifico tutti i relativi video -> elimino/modifico tutte le relative segnalazioni ai commenti
+	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE,	-- Se elimino/modifico un account -> elimino/modifico tutti i relativi video -> elimino/modifico tutte le relative segnalazioni ai commenti
 	FOREIGN KEY(id_Commento) REFERENCES Commenti(id_Commento) ON DELETE CASCADE ON UPDATE CASCADE	-- Se elimino/modifico un video -> elimino/modifico tutte le relative segnalazioni ai commenti
 );
 
