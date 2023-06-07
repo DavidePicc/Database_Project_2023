@@ -5372,16 +5372,30 @@ VALUES ('42', '141', '2034-11-21 18:06:29'),
 
 
 -- Popolamento tabella Playlist
-INSERT INTO Playlist (account, titolo, descrizione, visibilita)
-VALUES (1, 'Playlist preferiti', 'I miei video preferiti', 'Pubblico'),
-       (2, 'Guarda dopo', 'Video da guardare in seguito', 'Privato'),
-       (3, 'Playlist divertenti', 'Video comici e divertenti', 'Pubblico'),
-       (4, 'Playlist musica', 'Le mie canzoni preferite', 'Privato'),
-       (5, 'Playlist viaggi', 'Video dei miei viaggi in giro per il mondo', 'Pubblico'),
-       (6, 'Playlist motivazionali', 'Video per ispirazione e  motivazione', 'Privato'),
-       (7, 'Playlist tutorial', 'Tutorial su vari argomenti', 'Pubblico'),
-       (8, 'Playlist film', 'I miei film preferiti', 'Privato'),
-       (9, 'Playlist sport', 'Video sportivi e allenamenti', 'Pubblico');
+INSERT INTO Playlist(account, titolo, descrizione, visibilita) 
+VALUES (17, 'Momenti indimenticabili', 'Una collezione di momenti che rimarranno impressi nella memoria', 'Privato'),
+       (23, 'Esperienze visive', 'Un viaggio emozionante attraverso esperienze visive sorprendenti', 'Pubblico'),
+       (33, 'Risate garantite', 'Una raccolta di video comici che ti faranno ridere a crepapelle', 'Pubblico'),
+       (47, 'I migliori video di sempre', 'Una selezione dei video più iconici e indimenticabili di tutti i tempi', 'Pubblico'),
+       (50, 'Incredibili performance', 'Assisti a performance incredibili e ammira il talento artistico', 'Pubblico'),
+       (46, 'Playlist per tutte le stagioni', 'Brani adatti ad ogni stagione', 'Pubblico'),
+       (24, 'Video che fanno riflettere', 'Video che stimolano la riflessione su temi importanti', 'Privato'),
+       (18, 'Playlist delle meraviglie', 'Una raccolta di brani musicali meravigliosi da scoprire', 'Pubblico'),
+       (9, 'Emozioni in immagini', 'Esplora emozioni intense attraverso immagini suggestive', 'Privato'),
+       (10, 'Video da non perdere', 'Una selezione di video che non puoi assolutamente perdere', 'Privato'),
+       (24, 'Playlist emozionanti', 'Canzoni che toccano le corde emotive', 'Pubblico'),
+       (12, 'Istanti di bellezza', 'Video che catturano istanti di pura bellezza', 'Privato'),
+       (32, 'Video che toccano il cuore', 'Video che toccano il cuore e lasciano un segno', 'Pubblico'),
+       (14, 'Playlist per il relax', 'Musica rilassante per momenti di tranquillità', 'Privato'),
+       (15, 'Video che ispirano', 'Video che ispirano e motivano a raggiungere grandi obiettivi', 'Pubblico'),
+       (49, 'Momenti da condividere', 'Momenti speciali da condividere con il mondo', 'Privato'),
+       (17, 'Video sorprendenti', 'Video che ti lasceranno a bocca aperta', 'Pubblico'),
+       (44, 'Playlist invernale', 'Brani perfetti per atmosfera invernale', 'Privato'),
+       (19, 'Video divertenti', 'Ridi a crepapelle con questi video divertenti', 'Pubblico'),
+       (20, 'Playlist estiva', 'La colonna sonora perfetta per estate', 'Privato'),
+       (21, 'Video mozzafiato', 'Video che ti lasceranno senza fiato', 'Pubblico'),
+       (45, 'Playlist motivazionale', 'Canzoni che ti daranno la carica e la motivazione', 'Privato'),
+       (23, 'Video che ti fanno pensare', 'Video che stimolano il pensiero critico', 'Pubblico');
 
 INSERT INTO VideoPlaylist (id_Video, id_Playlist)
 VALUES (1, 2),
