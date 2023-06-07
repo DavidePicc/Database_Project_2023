@@ -5373,15 +5373,15 @@ VALUES ('42', '141', '2034-11-21 18:06:29'),
 
 -- Popolamento tabella Playlist
 INSERT INTO Playlist (account, titolo, descrizione, visibilita)
-VALUES (1, 2, 'Playlist preferiti', 'I miei video preferiti', 'Pubblico'),
-       (2, 3, 'Guarda dopo', 'Video da guardare in seguito', 'Privato'),
-       (1, 4, 'Playlist divertenti', 'Video comici e divertenti', 'Pubblico'),
-       (3, 1, 'Playlist musica', 'Le mie canzoni preferite', 'Privato'),
-       (2, 5, 'Playlist viaggi', 'Video dei miei viaggi in giro per il mondo', 'Pubblico'),
-       (4, 3, 'Playlist motivazionali', 'Video per ispirazione e  motivazione', 'Privato'),
-       (5, 1, 'Playlist tutorial', 'Tutorial su vari argomenti', 'Pubblico'),
-       (3, 2, 'Playlist film', 'I miei film preferiti', 'Privato'),
-       (4, 4, 'Playlist sport', 'Video sportivi e allenamenti', 'Pubblico');
+VALUES (1, 'Playlist preferiti', 'I miei video preferiti', 'Pubblico'),
+       (2, 'Guarda dopo', 'Video da guardare in seguito', 'Privato'),
+       (3, 'Playlist divertenti', 'Video comici e divertenti', 'Pubblico'),
+       (4, 'Playlist musica', 'Le mie canzoni preferite', 'Privato'),
+       (5, 'Playlist viaggi', 'Video dei miei viaggi in giro per il mondo', 'Pubblico'),
+       (6, 'Playlist motivazionali', 'Video per ispirazione e  motivazione', 'Privato'),
+       (7, 'Playlist tutorial', 'Tutorial su vari argomenti', 'Pubblico'),
+       (8, 'Playlist film', 'I miei film preferiti', 'Privato'),
+       (9, 'Playlist sport', 'Video sportivi e allenamenti', 'Pubblico');
 
 INSERT INTO VideoPlaylist (id_Video, id_Playlist)
 VALUES (1, 2),
