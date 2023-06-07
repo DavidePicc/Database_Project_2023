@@ -172,19 +172,7 @@ CREATE TABLE IF NOT EXISTS SavedPlaylist( -- Salvare playlist private ?
 
 
 
---Entità 8 salvare playlist
-CREATE TABLE IF NOT EXISTS SavedPlaylist( -- Salvare playlist private ?
-	account INT NOT NULL,
-	id_Playlist INT NOT NULL,
-
-	PRIMARY KEY(account, id_Playlist),
-	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE,	-- Se elimino/modifico un account -> elimino/modifico tutte le relative playlist salvate
-	FOREIGN KEY(id_Playlist) REFERENCES Playlist(id_Playlist) ON DELETE CASCADE ON UPDATE CASCADE	-- Se elimino/modifico una playlist -> la elimino/modifico da tutti gli account che l'hanno salvata
-);
-
-
-
---Entità 9 commento(che include la sottoclasse donazione)
+--Entità 8 commento(che include la sottoclasse donazione)
 CREATE TABLE IF NOT EXISTS Commenti(
 	id_Commento SERIAL, 		--Codice univoco per ogni commento, utilizzato per le risposte ai commenti
 	account INT NOT NULL, 		--Chi commenta
@@ -203,7 +191,7 @@ CREATE TABLE IF NOT EXISTS Commenti(
 
 
 
---Entità 10 segnalazioni dei video
+--Entità 9 segnalazioni dei video
 CREATE TABLE IF NOT EXISTS SegnalazioniVideo(
 	id_Segnalazione SERIAL, --Codice univoco per ogni segnalazione
 	account INT NOT NULL, 	--Chi segnala
@@ -219,7 +207,7 @@ CREATE TABLE IF NOT EXISTS SegnalazioniVideo(
 
 
 
---Entità 11 segnalazioni dei commenti
+--Entità 10 segnalazioni dei commenti
 CREATE TABLE IF NOT EXISTS SegnalazioniCommenti(
 	id_Segnalazione SERIAL, 	--Codice univoco per ogni segnalazione
 	account INT NOT NULL, 		--chi segnala
@@ -234,7 +222,7 @@ CREATE TABLE IF NOT EXISTS SegnalazioniCommenti(
 
 
 
---Entità 12 Like ai video
+--Entità 11 Like ai video
 CREATE TABLE IF NOT EXISTS LikeVideo(
 	id_Like SERIAL,
 	account INT NOT NULL, 
@@ -249,7 +237,7 @@ CREATE TABLE IF NOT EXISTS LikeVideo(
 
 
 
---Entità 13 Like ai commenti
+--Entità 12 Like ai commenti
 CREATE TABLE IF NOT EXISTS LikeCommenti(
 	id_Like SERIAL,
 	account INT NOT NULL, 
