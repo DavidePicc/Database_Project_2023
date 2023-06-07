@@ -93,3 +93,8 @@ FROM account;
 INSERT INTO Playlist (account, titolo, descrizione, visibilita)
 SELECT id_Account, 'Video piaciuti', 'descrizione', 'Privato'
 FROM account;
+--agginta video a cui ogni utente ha messo mi piace alla playlist mipiace
+INSERT INTO VideoPlaylist(id_Video,id_Playlist)
+SELECT L.id_Video, P.id_Playlist
+FROM Playlist AS P, LikeVideo AS L
+WHERE L.valutation='1' AND L.account=P.account AND P.titolo='Video piaciuti'
