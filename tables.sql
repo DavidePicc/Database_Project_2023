@@ -249,3 +249,13 @@ CREATE TABLE IF NOT EXISTS LikeCommenti(
 	FOREIGN KEY(account) REFERENCES Account(id_Account) ON DELETE CASCADE ON UPDATE CASCADE,		-- Se elimino/modifico un account -> elimino/modifico tutti i relativi video -> elimino/modifico tutti i relativi commenti al video
 	FOREIGN KEY(id_Commento) REFERENCES Commenti(id_Commento) ON DELETE CASCADE ON UPDATE CASCADE	-- Se elimino/modifico un video -> elimino/modifico tutti i relativi commenti al video
 );
+
+--INDEX
+--per migliorare calcolo rating
+CREATE INDEX idx_likevideo_account ON LikeVideo (valutation);
+--indice su titolo del video per le query parametrica(barra di ricerca
+CREATE INDEX idx_video_datapubblicazione ON Video (titolo);
+--
+CREATE INDEX idx_views_account ON Views (account);
+
+
