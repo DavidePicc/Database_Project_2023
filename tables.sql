@@ -252,10 +252,10 @@ CREATE TABLE IF NOT EXISTS LikeCommenti(
 
 --INDEX
 --per migliorare calcolo rating
-CREATE INDEX idx_likevideo_account ON LikeVideo (valutation);
+CREATE INDEX idx_likevideo_voto ON LikeVideo (valutation);
 --indice su titolo del video per le query parametrica(barra di ricerca
-CREATE INDEX idx_video_datapubblicazione ON Video (titolo);
---
+CREATE INDEX idx_video_titolo ON Video (titolo);
+--per facilitare la visualizzazione della cronologia e il calcolo delle views per video/canale
 CREATE INDEX idx_views_account ON Views (account);
 
 
