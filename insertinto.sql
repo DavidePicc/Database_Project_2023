@@ -7093,7 +7093,19 @@ INSERT INTO commenti(account, id_Video, messaggio, donazione, datacommento, id_r
 ('42', '25', 'Mi sono divertito tantissimo guardando questo video. Continua così!', '0', '2026-06-16 07:04:59', NULL),
 ('24', '122', 'Mi sono divertito tantissimo guardando questo video. Continua così!', '15', '2033-04-27 00:56:37', NULL),
 ('49', '39', 'Grazie per aver condiviso questo video. Mi hai ispirato a provare qualcosa di nuovo!', '0', '2027-01-25 14:06:16', NULL),
-('9', '145', 'Sono rimasto affascinato dall entusiasmo che trasmetti nel video. Bravissimo!', '21', '2035-03-20 17:38:42', NULL);
+('9', '145', 'Sono rimasto affascinato dall entusiasmo che trasmetti nel video. Bravissimo!', '21', '2035-03-20 17:38:42', NULL),
+
+--Commenti da segnalare
+('2', '2', 'Che bel video! Adoro quando la gente si fa del male!', '0', '2029-11-20 23:00:00', NULL),
+('4', '10', 'Sei così stupido e inutile! Vai a morire, idiota!', '0', '2024-02-25 21:45:00', NULL),
+('8', '4', 'Tu sei un fallito e non meriti di vivere! Spero che tu venga picchiato da qualcuno!', '0', '2025-04-25 14:45:00', NULL),
+('16', '50', 'Seguite questo tutorial per fare una bomba a casa vostra! Funziona davvero!', '0', '2028-07-20 19:00:00', NULL),
+('32', '56', 'Tutto quello che hai appena detto è una bugia! Sono un esperto in materia e posso confermarlo!', '0', '2032-05-15 02:30:00', NULL),
+('33', '77', 'I bambini sono davvero sexy! Li amo tanto!', '0', '2029-07-20 19:00:00', NULL),
+('34', '88', 'Dovremmo tutti unirci e uccidere tutti i non credenti! Viva il terrorismo!', '0', '2023-08-10 18:15:00', NULL),
+('44', '93', 'Visita il mio canale per scoprire come fare soldi facili! Clicca qui!', '0', '2029-01-10 19:30:00', NULL),
+('45', '100', 'Questo video infrange i miei diritti! Non posso accettare che qualcuno dica cose così offensive!', '0', '2031-03-20 16:00:00', NULL),
+('46', '110', 'I sottotitoli di questo video sono completamente sbagliati e incomprensibili!', '0', '2025-12-15 10:15:00', NULL);
 
 
 -- Popolamento tabella SegnalazioniVideo
