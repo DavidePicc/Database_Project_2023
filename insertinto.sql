@@ -7109,12 +7109,17 @@ INSERT INTO commenti(account, id_Video, messaggio, donazione, datacommento, id_r
 
 
 -- Popolamento tabella SegnalazioniVideo
-INSERT INTO SegnalazioniVideo (account, id_Video, motivo, descrizione, data)
-VALUES (1, 2, 'Contenuti violenti o ripugnanti', 'Video troppo violento', '2023-04-02 16:00:00'),
-       (2, 1, 'Contenuti di natura sessuale', 'Video inappropriato', '2023-04-03 11:00:00'),
-       (3, 1, 'Violazione del copyright', 'Contenuto protetto da copyright', '2023-05-05 10:30:00'),
-       (4, 3, 'Spam o ingannevole', 'Contenuto spam', '2023-06-10 15:45:00'),
-       (5, 2, 'Contenuti offensivi', 'Diffamazione nel video', '2023-07-15 09:15:00');
+INSERT INTO SegnalazioniVideo (account, id_Video, motivo, descrizione, data) VALUES
+	(10, 45, 'Contenuti di natura sessuale', 'Il video contiene immagini esplicite', '2026-11-21 12:00:00'),
+	(27, 102, 'Contenuti violenti o ripugnanti', 'Il video mostra scene di violenza estrema', '2031-08-16 08:30:00'),
+	(5, 77, 'Contenuti offensivi', 'Il video contiene insulti e discriminazioni', '2029-07-21 10:30:00'),
+	(14, 33, 'Molestie o bullismo', 'Il video sta diffamando una persona', '2025-11-21 10:30:00'),
+	(42, 126, 'Azioni dannose o pericolose', 'Il video spiega come compiere atti illegali', '2033-08-16 08:30:00'),
+	(18, 91, 'Disinformazione', 'Il video diffonde notizie false e fuorvianti', '2030-09-06 10:00:00'),
+	(8, 12, 'Abusi su minori', 'Il video mostra maltrattamenti verso bambini', '2024-02-25 21:31:00'),
+	(35, 67, 'Promuove il terrorismo', 'Il video incita alla violenza e al terrorismo', '2028-09-06 10:00:00'),
+	(20, 144, 'Spam o ingannevole', 'Il video è un annuncio ingannevole', '2035-02-25 01:00:00'),
+	(7, 50, 'Non rispetta i miei diritti', 'Il video viola i miei diritti d autore', '2027-04-25 21:30:00');
 
 
 -- Popolamento tabella SegnalazioniCommenti
