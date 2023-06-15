@@ -7104,8 +7104,8 @@ INSERT INTO commenti(account, id_Video, messaggio, donazione, datacommento, id_r
 ('33', '77', 'I bambini sono davvero sexy! Li amo tanto!', '0', '2029-07-20 19:00:00', NULL),
 ('34', '88', 'Dovremmo tutti unirci e uccidere tutti i non credenti! Viva il terrorismo!', '0', '2023-08-10 18:15:00', NULL),
 ('44', '93', 'Visita il mio canale per scoprire come fare soldi facili! Clicca qui!', '0', '2029-01-10 19:30:00', NULL),
-('45', '100', 'Questo video infrange i miei diritti! Non posso accettare che qualcuno dica cose così offensive!', '0', '2031-03-20 16:00:00', NULL),
-('46', '110', 'I sottotitoli di questo video sono completamente sbagliati e incomprensibili!', '0', '2025-12-15 10:15:00', NULL);
+('45', '100', 'Il vaccino contro il COVID uccide, Bill Gates ci sta iniettando il 5G, SVEGLIATEVI!', '0', '2031-03-20 16:00:00', NULL),
+('46', '110', 'Questo video mi fa venir voglia di picchiare la prima persona che vedo!', '0', '2025-12-15 10:15:00', NULL);
 
 
 -- Popolamento tabella SegnalazioniVideo
