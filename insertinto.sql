@@ -7119,11 +7119,16 @@ VALUES (1, 2, 'Contenuti violenti o ripugnanti', 'Video troppo violento', '2023-
 
 -- Popolamento tabella SegnalazioniCommenti
 INSERT INTO SegnalazioniCommenti (account, id_Commento, motivo, data)
-VALUES (1, 2, 'Contenuti offensivi', '2023-04-03 12:00:00'),
-       (2, 1, 'Molestie o bullismo', '2023-04-03 13:00:00'),
-       (3, 4, 'Violazione del copyright', '2023-05-06 14:30:00'),
-       (4, 3, 'Spam o ingannevole', '2023-06-11 16:45:00'),
-       (5, 5, 'Spam o ingannevole', '2023-07-16 11:30:00');
+VALUES (46, 1681, 'Contenuti violenti o ripugnanti', '2025-12-15 10:30:00'),
+       (45, 1680, 'Disinformazione', '2031-03-20 16:00:00'),
+       (44, 1679, 'Spam o ingannevole', '2029-01-10 19:30:00'),
+       (34, 1678, 'Promuove il terrorismo', '2023-08-10 18:15:00'),
+       (33, 1677, 'Abusi su minori', '2029-07-20 19:00:00'),
+	(32, 1676, 'Disinformazione', '2032-05-15 02:30:00'),
+	(16, 1675, 'Promuove il terrorismo', '2028-07-20 19:00:00'),
+	(8, 1674, 'Contenuti offensivi', '2025-04-25 14:45:00'),
+	(4, 1673, 'Contenuti offensivi', '2024-02-25 21:45:00'),
+	(2, 1672, 'Contenuti violenti o ripugnanti', '2029-11-20 23:00:00');
 
 
 -- Popolamento tabella LikeVideo
