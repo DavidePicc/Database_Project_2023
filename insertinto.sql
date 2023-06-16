@@ -5397,28 +5397,51 @@ VALUES (17, 'Momenti indimenticabili', 'Una collezione di momenti che rimarranno
        (45, 'Playlist motivazionale', 'Canzoni che ti daranno la carica e la motivazione', 'Privato'),
        (23, 'Video che ti fanno pensare', 'Video che stimolano il pensiero critico', 'Pubblico');
 
-INSERT INTO VideoPlaylist (id_Video, id_Playlist)
-VALUES (1, 2),
-       (2, 3),
-       (1, 4),
-       (3, 1),
-       (2, 5),
-       (4, 3),
-       (5, 1),
-       (3, 2),
-       (4, 4);
+-- Popolamento tabella VideoPlaylist
+INSERT INTO VideoPlaylist (id_Video, id_Playlist) VALUES
+	(1, 2),
+	(2, 3),
+	(1, 4),
+	(3, 1),
+	(2, 5),
+	(4, 3),
+	(5, 1),
+	(3, 2),
+	(4, 4),
+	(6, 1),
+	(7, 3),
+	(8, 2),
+	(9, 4),
+	(10, 1),
+	(11, 5),
+	(12, 3),
+	(13, 2),
+	(14, 4),
+	(15, 1),
+	(16, 3);
 
 -- Popolamento tabella SavedPlaylist
-INSERT INTO SavedPlaylist (account, id_Playlist)
-VALUES (1, 2),
-       (2, 1),
-       (3, 4),
-       (1, 3),
-       (4, 2),
-       (5, 1),
-       (2, 3),
-       (3, 5),
-       (4, 1);
+INSERT INTO SavedPlaylist (account, id_Playlist) VALUES
+	(10, 2),
+	(27, 1),
+	(5, 4),
+	(14, 3),
+	(42, 2),
+	(18, 1),
+	(8, 3),
+	(35, 5),
+	(20, 1),
+	(7, 6),
+	(15, 2),
+	(29, 4),
+	(11, 3),
+	(6, 1),
+	(39, 5),
+	(17, 2),
+	(22, 3),
+	(33, 1),
+	(44, 4),
+	(45, 5);
 
 
 -- Popolamento tabella Commenti
@@ -7105,7 +7128,21 @@ INSERT INTO commenti(account, id_Video, messaggio, donazione, datacommento, id_r
 ('34', '88', 'Dovremmo tutti unirci e uccidere tutti i non credenti! Viva il terrorismo!', '0', '2023-08-10 18:15:00', NULL),
 ('44', '93', 'Visita il mio canale per scoprire come fare soldi facili! Clicca qui!', '0', '2029-01-10 19:30:00', NULL),
 ('45', '100', 'Il vaccino contro il COVID uccide, Bill Gates ci sta iniettando il 5G, SVEGLIATEVI!', '0', '2031-03-20 16:00:00', NULL),
-('46', '110', 'Questo video mi fa venir voglia di picchiare la prima persona che vedo!', '0', '2025-12-15 10:15:00', NULL);
+('46', '110', 'Questo video mi fa venir voglia di picchiare la prima persona che vedo!', '0', '2025-12-15 10:15:00', NULL),
+	
+--Dialogo
+('1', '4', 'Wow, ho appena visto questo video e sono rimasto a bocca aperta! L audacia di questo motociclista è incredibile!', '0', '2033-10-13 14:06:21', NULL),
+('2', '4', 'Sì, è davvero impressionante! Mi chiedo quanto tempo abbia impiegato per padroneggiare tutte quelle acrobazie.', '0', '2033-10-13 14:07:00', 1682),
+('3', '4', 'Penso che sia un professionista nel settore. Non si può ottenere quel livello di perizia da un giorno all altro!', '0', '2033-10-13 14:8:21', 1683),
+('4', '4', 'Sono d accordo, ma credo che ci sia anche una buona dose di coraggio. Io non mi avvicinerei mai a fare cose del genere!', '0', '2033-10-13 14:9:21', 1684),
+('1', '4', 'Neanche io! Sarei troppo spaventato. Ma è divertente da guardare, ti fa sentire come se fossi lì con lui.', '0', '2033-10-13 14:10:21', 1685),
+('2', '4', 'È vero, è come vivere un esperienza adrenalinica senza dover rischiare la propria vita!', '0', '2033-10-13 14:15:22', 1686),
+('3', '4', 'Quindi, avete provato ad imitare qualche mossa dopo aver visto il video? Io ho fatto qualche acrobazia con la mia bici, ma non sono nemmeno lontanamente paragonabili a quelle del motociclista.', '0', '2033-10-13 14:20:41', 1687),
+('4', '4', 'Ahah, no, grazie! Penso che mi ferirei solo. Meglio lasciare quelle mosse ai professionisti!', '0', '2033-10-13 14:22:55', 1688),
+('1', '4', 'Hai ragione, ci vogliono anni di allenamento e preparazione per riuscire a fare acrobazie del genere. Ma ammiro la passione e la dedizione di questo motociclista!', '0', '2033-10-13 14:24:45', 1689),
+('2', '4', 'Assolutamente! È bello vedere persone che seguono le proprie passioni e riescono ad eccellere in ciò che fanno.', '0', '2033-10-13 14:26:04', 1690),
+('3', '4', 'E questo video è solo l inizio. Ho visto che il motociclista ha caricato molti altri video con acrobazie sempre più spettacolari!', '0', '2033-10-13 14:28:01', 1691),
+('4', '4', 'Non vedo l ora di guardarli tutti! Questo motociclista è davvero un talento e sono sicuro che ci riserverà ancora molte sorprese nel futuro!', '0', '2033-10-13 14:30:00', 1692);
 
 
 -- Popolamento tabella SegnalazioniVideo
@@ -10691,9 +10728,64 @@ VALUES ('42', '141', '2034-11-21 18:06:29', '1'),
 
 
 -- Popolamento tabella LikeCommenti
-INSERT INTO LikeCommenti (account, id_Commento, data, valutation)
-VALUES (1, 2, '2023-04-03 11:00:00', '1'),
-       (2, 1, '2023-04-03 12:00:00', '-1'),
-       (3, 1, '2023-04-03 13:00:00', '1'),
-       (4, 3, '2023-04-04 10:00:00', '1'),
-       (5, 2, '2023-04-05 09:00:00', '-1');
+INSERT INTO LikeCommenti (account, id_Commento, data, valutation) VALUES
+('35', '128', '2033-10-13 13:06:21', '1'),
+('20', '80', '2029-10-14 04:19:25', '1'),
+('6', '134', '2034-04-27 03:08:21', '1'),
+('32', '140', '2034-10-13 15:18:05', '1'),
+('12', '45', '2026-11-21 09:25:36', '-1'),
+('28', '73', '2029-03-21 04:28:18', '-1'),
+('42', '3', '2026-06-16 07:04:59', '1'),
+('3', '5', '2023-07-21 05:57:08', '-1'),
+('22', '92', '2030-10-14 06:31:09', '1'),
+('19', '79', '2029-09-06 16:38:02', '1'),
+('22', '66', '2028-08-16 09:55:05', '1'),
+('20', '96', '2031-02-26 13:13:32', '1'),
+('4', '121', '2033-03-22 04:22:15', '1'),
+('23', '87', '2030-05-15 16:38:36', '1'),
+('42', '113', '2032-07-22 07:56:46', '1'),
+('13', '127', '2033-09-06 01:24:58', '1'),
+('17', '56', '2027-10-13 08:48:56', '-1'),
+('15', '1', '2024-03-26 14:50:41', '-1'),
+('47', '115', '2032-09-05 23:13:14', '1'),
+('41', '25', '2026-05-03 06:55:32', '1'),
+('7', '110', '2032-04-26 22:44:53', '-1'),
+('44', '122', '2033-04-27 00:56:37', '1'),
+('30', '108', '2032-02-26 15:25:16', '1'),
+('23', '68', '2028-10-14 02:07:41', '1'),
+('15', '51', '2027-05-16 10:03:24', '-1'),
+('39', '16', '2026-03-25 04:07:08', '1'),
+('30', '43', '2026-09-05 18:55:49', '1'),
+('49', '136', '2034-06-11 18:24:49', '1'),
+('30', '141', '2034-11-21 18:06:29', '1'),
+('43', '91', '2030-09-06 18:49:46', '1'),
+('25', '37', '2026-03-21 21:53:06', '1'),
+('4', '40', '2026-06-11 09:43:56', '1'),
+('46', '78', '2029-08-16 12:06:49', '1'),
+('26', '3', '2025-02-09 01:45:57', '1'),
+('50', '36', '2027-02-28 19:33:37', '1'),
+('29', '2', '2025-05-26 00:22:02', '1'),
+('17', '103', '2031-09-06 21:01:30', '1'),
+('39', '127', '2033-09-06 01:24:58', '1'),
+('44', '136', '2034-06-11 18:24:49', '1'),
+('16', '62', '2028-04-25 22:50:56', '1')
+--Like del dialogo
+('2', '1682', '2033-10-13 14:06:50', '1'),
+('3', '1682', '2033-10-13 14:06:55', '1'),
+('4', '1682', '2033-10-13 14:06:59', '1'),
+('1', '1683', '2033-10-13 14:07:42', '1'),
+('3', '1683', '2033-10-13 14:07:42', '1'),
+('1', '1684', '2033-10-13 14:08:42', '1'),
+('2', '1684', '2033-10-13 14:08:56', '1'),
+('1', '1685', '2033-10-13 14:09:42', '1'),
+('4', '1686', '2033-10-13 14:10:33', '1'),
+('3', '1687', '2033-10-13 14:16:06', '1'),
+('4', '1688', '2033-10-13 14:21:42', '1'),
+('1', '1689', '2033-10-13 14:23:01', '1'),
+('2', '1689', '2033-10-13 14:23:40', '1'),
+('3', '1689', '2033-10-13 14:23:41', '1'),
+('2', '1690', '2033-10-13 14:25:42', '1'),
+('1', '1691', '2033-10-13 14:27:24', '1'),
+('2', '1692', '2033-10-13 14:29:42', '1'),
+('1', '1693', '2033-10-13 14:32:32', '1'),
+('2', '1693', '2033-10-13 14:35:42', '1');
