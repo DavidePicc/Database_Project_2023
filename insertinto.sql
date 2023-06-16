@@ -7133,16 +7133,16 @@ INSERT INTO commenti(account, id_Video, messaggio, donazione, datacommento, id_r
 --Dialogo
 ('1', '4', 'Wow, ho appena visto questo video e sono rimasto a bocca aperta! L audacia di questo motociclista è incredibile!', '0', '2033-10-13 14:06:21', NULL),
 ('2', '4', 'Sì, è davvero impressionante! Mi chiedo quanto tempo abbia impiegato per padroneggiare tutte quelle acrobazie.', '0', '2033-10-13 14:07:00', 1682),
-('3', '4', 'Penso che sia un professionista nel settore. Non si può ottenere quel livello di perizia da un giorno all altro!', '0', '2033-10-13 14:8:21', 1683),
-('4', '4', 'Sono d accordo, ma credo che ci sia anche una buona dose di coraggio. Io non mi avvicinerei mai a fare cose del genere!', '0', '2033-10-13 14:9:21', 1684),
-('1', '4', 'Neanche io! Sarei troppo spaventato. Ma è divertente da guardare, ti fa sentire come se fossi lì con lui.', '0', '2033-10-13 14:10:21', 1685),
-('2', '4', 'È vero, è come vivere un esperienza adrenalinica senza dover rischiare la propria vita!', '0', '2033-10-13 14:15:22', 1686),
-('3', '4', 'Quindi, avete provato ad imitare qualche mossa dopo aver visto il video? Io ho fatto qualche acrobazia con la mia bici, ma non sono nemmeno lontanamente paragonabili a quelle del motociclista.', '0', '2033-10-13 14:20:41', 1687),
-('4', '4', 'Ahah, no, grazie! Penso che mi ferirei solo. Meglio lasciare quelle mosse ai professionisti!', '0', '2033-10-13 14:22:55', 1688),
-('1', '4', 'Hai ragione, ci vogliono anni di allenamento e preparazione per riuscire a fare acrobazie del genere. Ma ammiro la passione e la dedizione di questo motociclista!', '0', '2033-10-13 14:24:45', 1689),
-('2', '4', 'Assolutamente! È bello vedere persone che seguono le proprie passioni e riescono ad eccellere in ciò che fanno.', '0', '2033-10-13 14:26:04', 1690),
-('3', '4', 'E questo video è solo l inizio. Ho visto che il motociclista ha caricato molti altri video con acrobazie sempre più spettacolari!', '0', '2033-10-13 14:28:01', 1691),
-('4', '4', 'Non vedo l ora di guardarli tutti! Questo motociclista è davvero un talento e sono sicuro che ci riserverà ancora molte sorprese nel futuro!', '0', '2033-10-13 14:30:00', 1692);
+('3', '4', 'Penso che sia un professionista nel settore. Non si può ottenere quel livello di perizia da un giorno all altro!', '0', '2033-10-13 14:8:21', 1682),
+('4', '4', 'Sono d accordo, ma credo che ci sia anche una buona dose di coraggio. Io non mi avvicinerei mai a fare cose del genere!', '0', '2033-10-13 14:9:21', 1682),
+('1', '4', 'Neanche io! Sarei troppo spaventato. Ma è divertente da guardare, ti fa sentire come se fossi lì con lui.', '0', '2033-10-13 14:10:21', 1682),
+('2', '4', 'È vero, è come vivere un esperienza adrenalinica senza dover rischiare la propria vita!', '0', '2033-10-13 14:15:22', 1682),
+('3', '4', 'Quindi, avete provato ad imitare qualche mossa dopo aver visto il video? Io ho fatto qualche acrobazia con la mia bici, ma non sono nemmeno lontanamente paragonabili a quelle del motociclista.', '0', '2033-10-13 14:20:41', 1682),
+('4', '4', 'Ahah, no, grazie! Penso che mi ferirei solo. Meglio lasciare quelle mosse ai professionisti!', '0', '2033-10-13 14:22:55', 1682),
+('1', '4', 'Hai ragione, ci vogliono anni di allenamento e preparazione per riuscire a fare acrobazie del genere. Ma ammiro la passione e la dedizione di questo motociclista!', '0', '2033-10-13 14:24:45', 1682),
+('2', '4', 'Assolutamente! È bello vedere persone che seguono le proprie passioni e riescono ad eccellere in ciò che fanno.', '0', '2033-10-13 14:26:04', 1682),
+('3', '4', 'E questo video è solo l inizio. Ho visto che il motociclista ha caricato molti altri video con acrobazie sempre più spettacolari!', '0', '2033-10-13 14:28:01', 1682),
+('4', '4', 'Non vedo l ora di guardarli tutti! Questo motociclista è davvero un talento e sono sicuro che ci riserverà ancora molte sorprese nel futuro!', '0', '2033-10-13 14:30:00', 1682);
 
 
 -- Popolamento tabella SegnalazioniVideo
