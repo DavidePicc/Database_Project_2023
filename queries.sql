@@ -9,11 +9,10 @@ FROM Views
 GROUP BY id_Video
 );
 
---serve per forza view pk non abbiamo colonna views in video
 SELECT Video.id_account, SUM(total_views) AS ViewsCanale
 FROM ViewsPerVideo, Video
---WHERE id_Account = "id_canale"
-GROUP BY Video.id_account;
+GROUP BY Video.id_account
+HAVING SUM(total_views)>10;
 
 --2)i tuoi video/preferiti/like/cronologia
 SELECT *
