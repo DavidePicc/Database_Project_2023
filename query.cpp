@@ -241,7 +241,7 @@ int main(int argc, char **argv) {
             break;
 
             case 7:{
-                    string query = "DROP VIEW IF EXISTS ViewsPerVideo; CREATE VIEW ViewsPerVideo AS(SELECT id_Video, COUNT(account) AS total_views FROM Views GROUP BY id_Video); SELECT Video.id_account, SUM(total_views) AS ViewsCanale FROM ViewsPerVideo, Video GROUP BY Video.id_account;";
+                    string query = "DROP VIEW IF EXISTS ViewsPerVideo; CREATE VIEW ViewsPerVideo AS(SELECT id_Video, COUNT(account) AS total_views FROM Views GROUP BY id_Video); SELECT Video.id_account, SUM(total_views) AS ViewsCanale FROM ViewsPerVideo, Video GROUP BY Video.id_account HAVING SUM(total_views) > 10;";
                     queryProcedureNoParam(conn, query);
             }
             break;
@@ -283,11 +283,9 @@ int main(int argc, char **argv) {
             break;
 
             case 14:{
-                    string query, in1;
-                    cout << "Inserire l'ID del video (per esempio 4): ";
-                    getline(cin, in1); 
-                    query = "SELECT  * FROM Commenti WHERE id_video = $1::integer ORDER BY datacommento";
-                    queryProcedure(conn, query, in1);
+                    string query;
+                    query = "SELECT  * FROM Commenti WHERE id_commento = 1682 OR id_risposta = 1682 ORDER BY datacommento";
+                    queryProcedureNoParam(conn, query);
 
             }
             break;
