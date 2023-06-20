@@ -5,10 +5,10 @@
 #include "dependencies/include/libpq-fe.h"
 using namespace std ;
 
-#define PG_HOST "127.0.0.1" //NewServer ? // oppure "localhost" o "postgresql"
-#define PG_USER "postgres" // il vostro nome utente
-#define PG_DB "project" // il nome del database
-#define PG_PASS "davide2002" // la vostra password
+#define PG_HOST "127.0.0.1"
+#define PG_USER "postgres"  // Il vostro nome utente
+#define PG_DB "project"     // Il nome del database
+#define PG_PASS "password"  // La vostra password
 #define PG_PORT 5432
 
 //Funzione di controllo dei risultati
