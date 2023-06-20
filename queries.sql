@@ -1,6 +1,3 @@
---0)query parametrica: barra di ricerca video/canale/topic; su C++
--- Vedere file query.cpp
-
 --1)somma delle views di un canale/video
 --creare un view con questo, views per ogni canale poi usarl a sotto per views del canale.
 CREATE VIEW ViewsPerVideo AS(
@@ -14,28 +11,7 @@ FROM ViewsPerVideo, Video
 GROUP BY Video.id_account
 HAVING SUM(total_views)>10;
 
---2)i tuoi video/preferiti/like/cronologia
-SELECT *
-FROM Video
---WHERE id_Account = "id_canale"
-ORDER BY dataPubblicazione DESC;
-
-SELECT V.*
-FROM Video AS V
-INNER JOIN Playlist AS SP ON V.id_Video = SP.id_Video
---WHERE SP.account = "id_utente" AND titolo="preferiti";
-
-SELECT V.*
-FROM Video AS V
-INNER JOIN LikeVideo LV ON V.id_Video = LV.id_Video
-WHERE LV.account = <id_utente>;
-
-SELECT V.*
-FROM Video AS V
-INNER JOIN LikeVideo AS LV ON V.id_Video = LV.id_Video
---WHERE LV.account = <id_utente>;
-
---3)video in tendenza(con limit 10)
+--2)video in tendenza(con limit 10)
 SELECT V.*
 FROM Video AS V
 JOIN (
@@ -47,7 +23,7 @@ ORDER BY VIEWS.num_views DESC
 LIMIT 10;
 
 
---4)video ordinati in base al rating ricevuto(like+dislike/views) 
+--3)video ordinati in base al rating ricevuto(like+dislike/views) 
 -- uso la view creata sopra per le visualizzazioni e un altra view
 DROP VIEW IF EXISTS ViewsPerVideo;
 DROP VIEW IF EXISTS SommaLike;
@@ -75,17 +51,17 @@ SELECT S.id_Video, (S.SommaLike/V.total_views) AS RATING
 FROM SommaLike AS S JOIN ViewsPerVideo AS V ON S.id_Video=V.id_Video
 ORDER BY RATING DESC;
 
---5)utenti a cui far vedere una ads(se hanno yt premium o sono abbonati ad un canale)
+--4)utenti a cui far vedere una ads(se hanno yt premium o sono abbonati ad un canale)
 SELECT *
 FROM account
 WHERE premium = FALSE;
 
---6) lista delle live in onda ora
+--5) lista delle live in onda ora
 SELECT *
 FROM Video
 WHERE isLive = true; --non serve che controlli se la live già data fine perchè è messo come check nel codice per la creazione della tabella
 
---7) Query che crea la playlist "Mi piace" e "Guarda più tardi" per ogni utente
+--6) Query che crea le playlist "Mi piace" e "Guarda più tardi" per ogni utente
 INSERT INTO Playlist (account, titolo, descrizione, visibilita)
 SELECT id_Account, 'Guarda più tardi', ' ', 'Privato'
 FROM account;
@@ -93,7 +69,8 @@ FROM account;
 INSERT INTO Playlist (account, titolo, descrizione, visibilita)
 SELECT id_Account, 'Video piaciuti', 'descrizione', 'Privato'
 FROM account;
---agginta dei video a cui ogni utente ha messo mi piace alla playlist mi piace
+
+--7)agginta dei video a cui ogni utente ha messo mi piace alla playlist mi piace
 INSERT INTO VideoPlaylist(id_Video,id_Playlist)
 SELECT L.id_Video, P.id_Playlist
 FROM Playlist AS P, LikeVideo AS L
