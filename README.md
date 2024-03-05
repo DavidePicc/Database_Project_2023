@@ -1,7 +1,7 @@
-_(:it: version below)_  
-Report in both :en: and :it: in "_Database project.pdf_"
+_(🇮🇹 version below)_  
+Report in both 🇬🇧 and 🇮🇹 in "_Database project.pdf_"
 
-# :en: Database Project
+# 🇬🇧 Database Project
 
 ## Project Description
 The project involves the design and implementation of a database concerning an organization chosen by the student.
@@ -41,7 +41,7 @@ The project must also include:
 ---
 <br><br>
 
-# :it: Progetto Base di Dati
+# 🇮🇹 Progetto Base di Dati
 ## Descrizione del Progetto
 Il progetto consiste nella progettazione e nell’implementazione di una base di dati riguardante un'organizzazione a scelta dello studente.
 
